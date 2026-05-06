@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metrics — CSE419 Term Project #2</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <h1><span class="icon">🚨</span> Rescue Sim</h1>
+        <p>Multi-Agent System Dashboard</p>
+      </div>
+
+      <nav class="nav-section">
+        <div class="nav-section-title">Main</div>
+        <a href="../index.html" class="nav-link">
+          <span class="icon">📊</span> Dashboard
+        </a>
+        <a href="tasks.html" class="nav-link">
+          <span class="icon">📋</span> Tasks
+        </a>
+        <a href="robots.html" class="nav-link">
+          <span class="icon">🤖</span> Robots
+        </a>
+        <a href="metrics.html" class="nav-link active">
+          <span class="icon">📈</span> Metrics
+        </a>
+      </nav>
+
+      <nav class="nav-section">
+        <div class="nav-section-title">Documentation</div>
+        <a href="architecture.html" class="nav-link">
+          <span class="icon">🏗️</span> Architecture
+        </a>
+        <a href="guide.html" class="nav-link">
+          <span class="icon">📖</span> User Guide
+        </a>
+      </nav>
+
+      <div style="padding: 16px 24px; border-top: 1px solid var(--border); margin-top: auto;">
+        <p style="font-size: 11px; color: var(--muted); line-height: 1.6;">
+          <strong style="color: var(--text);">CSE419 Term Project #2</strong><br>
+          FOL-Based Multi-Agent System<br>
+          Doğukan Parlak · 221805040
+        </p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="breadcrumb">
+            <a href="../index.html">🏠</a>
+            <span>/</span>
+            <span>Metrics</span>
+          </div>
+          <h1>Evaluation Metrics</h1>
+          <p>Performance analysis of the multi-agent rescue operation</p>
+        </div>
+
+        <!-- Main Metrics Grid -->
+        <div class="section-header">
+          <h2>Performance Scores</h2>
+          <p>Key indicators measuring the quality of task assignments and execution</p>
+        </div>
+
+        <div class="grid mb-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="metric-card">
+                <div class="metric-label">Capability Match Rate</div>
+                <div class="metric-value" id="m-cap">—</div>
+                <div class="metric-bar"><div class="metric-bar-fill" id="bar-cap"></div></div>
+              </div>
+              <p class="text-muted text-sm mt-4">
+                Percentage of tasks assigned to a robot whose capability matches the task requirement.
+                A score of 100% means every task was given to a robot that can perform it.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="metric-card">
+                <div class="metric-label">Priority Order Score</div>
+                <div class="metric-value" id="m-prio">—</div>
+                <div class="metric-bar"><div class="metric-bar-fill" id="bar-prio"></div></div>
+              </div>
+              <p class="text-muted text-sm mt-4">
+                Measures whether tasks are executed in the correct priority order (high → medium → low).
+                Calculated as the ratio of correctly ordered consecutive task pairs.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="metric-card">
+                <div class="metric-label">Task Distribution Balance</div>
+                <div class="metric-value" id="m-balance">—</div>
+                <div class="metric-bar"><div class="metric-bar-fill" id="bar-balance"></div></div>
+              </div>
+              <p class="text-muted text-sm mt-4">
+                Measures how evenly tasks are distributed across robots. Based on Coefficient of Variation (CV).
+                Score close to 100% = even distribution; lower scores indicate imbalance.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="metric-card">
+                <div class="metric-label">Completion Rate</div>
+                <div class="metric-value" id="m-comp">—</div>
+                <div class="metric-bar"><div class="metric-bar-fill" id="bar-comp"></div></div>
+              </div>
+              <p class="text-muted text-sm mt-4">
+                Percentage of tasks that were successfully completed by the assigned robots.
+                100% means all tasks were executed.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unassigned Tasks -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Unassigned Tasks</h2>
+          </div>
+          <div class="card-body">
+            <div style="display: flex; align-items: center; gap: 24px;">
+              <div class="metric-value" id="m-unassigned" style="font-size: 48px;">—</div>
+              <p class="text-muted">
+                Number of tasks that could not be assigned to any robot.
+                Ideally this should be <strong>0</strong>. Unassigned tasks indicate
+                missing robot capabilities or system errors.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cost ratio (HW2; CSE419 PDF) -->
+        <div class="section-header mt-4">
+          <h2>Cost Ratio (Actual / Optimal) — HW2</h2>
+          <p>PDF: Cost(r,t) = Distance(r,t) / Speed(r); Efficiency = Actual Cost / Optimal Cost</p>
+        </div>
+
+        <div class="grid mb-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="metric-card">
+                <div class="metric-label">Actual Total Cost</div>
+                <div class="metric-value" id="m-actual-cost" style="font-size: 22px;">—</div>
+              </div>
+              <p class="text-muted text-sm mt-4">
+                Sum of <code>Distance(r,t) / Speed(r)</code> for all task–robot pairs based on the actual assignment.
+                Robot start position: <code>(0, 0)</code>.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="metric-card">
+                <div class="metric-label">Optimal Total Cost</div>
+                <div class="metric-value" id="m-optimal-cost" style="font-size: 22px;">—</div>
+              </div>
+              <p class="text-muted text-sm mt-4">
+                Minimum possible cost if each task is assigned to the lowest-cost compatible robot.
+                With one robot per capability type, this equals the actual cost.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="metric-card">
+                <div class="metric-label">Cost ratio (1.0 = optimal)</div>
+                <div class="metric-value" id="m-cost-eff">—</div>
+                <div class="metric-bar"><div class="metric-bar-fill" id="bar-cost-eff"></div></div>
+              </div>
+              <p class="text-muted text-sm mt-4">
+                <code>Actual Cost / Optimal Cost</code> (CSE419 Term Project #2). Value <strong>1.0</strong> means actual
+                equals the per-task greedy lower bound; values <strong>&gt; 1.0</strong> indicate higher-than-baseline cost.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Formulas -->
+        <div class="card mt-4">
+          <div class="card-header">
+            <h2>Metric Formulas</h2>
+          </div>
+          <div class="card-body">
+            <div class="grid">
+              <div class="info-card">
+                <h3>📊 Capability Match Rate</h3>
+                <p><code>matched_tasks / total_tasks</code></p>
+              </div>
+              <div class="info-card">
+                <h3>📊 Priority Order Score</h3>
+                <p><code>correct_pairs / total_pairs</code></p>
+              </div>
+              <div class="info-card">
+                <h3>📊 Task Distribution Balance</h3>
+                <p><code>1 / (1 + CV)</code> where CV = stdev / mean</p>
+              </div>
+              <div class="info-card">
+                <h3>📊 Completion Rate</h3>
+                <p><code>completed_tasks / total_tasks</code></p>
+              </div>
+              <div class="info-card">
+                <h3>📊 Cost ratio (HW2)</h3>
+                <p><code>Actual Cost / Optimal Cost</code> (PDF)<br>where Cost(r,t) = Distance(r,t) / Speed(r)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error Card -->
+        <div class="card" id="error-card" style="display: none;">
+          <div class="error-message">
+            <div class="icon">⚠️</div>
+            <h2>Could not load simulation data</h2>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script>
+    async function init() {
+      Dashboard.initPage();
+      try {
+        const data = await Dashboard.loadData();
+        Dashboard.renderMetrics(data);
+        Dashboard.renderCostMetrics(data);
+      } catch (e) {}
+    }
+    init();
+  </script>
+</body>
+</html>

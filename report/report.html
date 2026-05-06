@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="refresh" content="0; url=index.html" />
+  <title>Redirecting to Dashboard...</title>
+</head>
+<body>
+  <p>Redirecting to <a href="index.html">Dashboard</a>...</p>
+</body>
+</html>
+<!--
+  OLD FILE - KEPT FOR BACKWARDS COMPATIBILITY
+  This file now redirects to the new index.html
+  
+  Previous inline styles preserved below for reference:
+  
+  <style>
+    :root {
+      --bg: #0a0f1a;
+      --panel: #111827;
+      --panel-light: #1f2937;
+      --accent: #4ade80;
+      --accent-soft: rgba(74, 222, 128, 0.15);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --danger: #fb7185;
+      --warning: #fcd34d;
+      --info: #38bdf8;
+      --radius: 12px;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #0a0f1a 0%, #1a1f2e 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-left h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .header-left p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .header-right {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--panel-light);
+      border: 1px solid var(--border);
+    }
+
+    .pill-accent {
+      background: var(--accent-soft);
+      border-color: rgba(74, 222, 128, 0.3);
+      color: var(--accent);
+    }
+
+    .pill-label {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* Grid layout */
+    .grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 1024px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--panel);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-header h2 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .card-body {
+      padding: 16px 20px;
+    }
+
+    /* Tables */
+    .table-wrapper {
+      overflow-x: auto;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    thead {
+      position: sticky;
+      top: 0;
+      background: var(--panel);
+      z-index: 1;
+    }
+
+    th {
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 500;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.5);
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Priority tags */
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .tag-high {
+      background: rgba(251, 113, 133, 0.15);
+      color: #fda4af;
+    }
+
+    .tag-medium {
+      background: rgba(252, 211, 77, 0.15);
+      color: #fde68a;
+    }
+
+    .tag-low {
+      background: rgba(56, 189, 248, 0.15);
+      color: #7dd3fc;
+    }
+
+    /* Metrics */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .metric-card {
+      background: var(--panel-light);
+      border-radius: 10px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .metric-value {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .metric-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .metric-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+      border-radius: 999px;
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Error state */
+    .error-message {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    .error-message h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--danger);
+    }
+
+    .error-message p {
+      font-size: 14px;
+    }
+
+    /* Summary pill in card header */
+    .summary-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      background: var(--panel-light);
+      border-radius: 999px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <h1>Disaster Rescue Simulation</h1>
+        <p>Multi-Agent System — Visual Dashboard</p>
+      </div>
+      <div class="header-right">
+        <span class="pill pill-accent">
+          <span class="pill-label">Mode:</span>
+          <span id="mode-value">—</span>
+        </span>
+        <span class="pill">
+          <span class="pill-label">Backend:</span>
+          <span id="backend-value">—</span>
+        </span>
+        <span class="pill">
+          <span id="task-count">0</span> Tasks
+        </span>
+        <span class="pill">
+          <span id="robot-count">0</span> Robots
+        </span>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <div class="grid">
+      <!-- Tasks -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Tasks</h2>
+          <span class="summary-pill" id="priority-summary">—</span>
+        </div>
+        <div class="card-body">
+          <div class="table-wrapper">
+            <table id="tasks-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Type</th>
+                  <th>Priority</th>
+                  <th>Required Capability</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Robots + Metrics -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Robots</h2>
+        </div>
+        <div class="card-body">
+          <div class="table-wrapper" style="max-height: 150px; margin-bottom: 16px;">
+            <table id="robots-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Capability</th>
+                  <th>Speed</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <h3 style="font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">
+            Evaluation Metrics
+          </h3>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-label">Capability Match</div>
+              <div class="metric-value" id="m-cap">—</div>
+              <div class="metric-bar"><div class="metric-bar-fill" id="bar-cap"></div></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Priority Order</div>
+              <div class="metric-value" id="m-prio">—</div>
+              <div class="metric-bar"><div class="metric-bar-fill" id="bar-prio"></div></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Task Balance</div>
+              <div class="metric-value" id="m-balance">—</div>
+              <div class="metric-bar"><div class="metric-bar-fill" id="bar-balance"></div></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Completion Rate</div>
+              <div class="metric-value" id="m-comp">—</div>
+              <div class="metric-bar"><div class="metric-bar-fill" id="bar-comp"></div></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Unassigned Tasks</div>
+              <div class="metric-value" id="m-unassigned">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assignments (full width) -->
+      <div class="card full-width">
+        <div class="card-header">
+          <h2>Final Assignments</h2>
+        </div>
+        <div class="card-body">
+          <div class="table-wrapper">
+            <table id="assignments-table">
+              <thead>
+                <tr>
+                  <th>Task ID</th>
+                  <th>Type</th>
+                  <th>Priority</th>
+                  <th>Assigned Robot</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error placeholder (hidden by default) -->
+    <div class="card full-width" id="error-card" style="display: none;">
+      <div class="error-message">
+        <h2>Could not load simulation data</h2>
+        <p>Run the simulation first: <code>python main.py</code></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadData() {
+      try {
+        const res = await fetch('../results/latest.json');
+        if (!res.ok) throw new Error('File not found');
+        const data = await res.json();
+        render(data);
+      } catch (err) {
+        console.error('Failed to load results/latest.json:', err);
+        document.getElementById('error-card').style.display = 'block';
+      }
+    }
+
+    function render(data) {
+      // Header
+      document.getElementById('mode-value').textContent = data.mode || '—';
+      document.getElementById('backend-value').textContent = data.backend || '—';
+      document.getElementById('task-count').textContent = data.tasks?.length || 0;
+      document.getElementById('robot-count').textContent = data.robots?.length || 0;
+
+      // Priority summary
+      const priorityCounts = { high: 0, medium: 0, low: 0 };
+      for (const t of data.tasks || []) {
+        priorityCounts[t.priority] = (priorityCounts[t.priority] || 0) + 1;
+      }
+      document.getElementById('priority-summary').textContent =
+        `High: ${priorityCounts.high} | Med: ${priorityCounts.medium} | Low: ${priorityCounts.low}`;
+
+      // Tasks table
+      const tasksTbody = document.querySelector('#tasks-table tbody');
+      tasksTbody.innerHTML = '';
+      for (const t of data.tasks || []) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${t.id}</td>
+          <td>${t.type}</td>
+          <td>${priorityTag(t.priority)}</td>
+          <td>${t.capability}</td>
+          <td>(${t.x}, ${t.y})</td>
+        `;
+        tasksTbody.appendChild(tr);
+      }
+
+      // Robots table
+      const robotsTbody = document.querySelector('#robots-table tbody');
+      robotsTbody.innerHTML = '';
+      for (const r of data.robots || []) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${r.id}</td>
+          <td>${r.name}</td>
+          <td>${r.capability}</td>
+          <td>${r.speed}</td>
+        `;
+        robotsTbody.appendChild(tr);
+      }
+
+      // Assignments table (join tasks + robots)
+      const taskMap = Object.fromEntries((data.tasks || []).map(t => [t.id, t]));
+      const robotMap = Object.fromEntries((data.robots || []).map(r => [r.id, r]));
+      const assignmentsTbody = document.querySelector('#assignments-table tbody');
+      assignmentsTbody.innerHTML = '';
+      for (const a of data.assignments || []) {
+        const t = taskMap[a.task_id];
+        const r = robotMap[a.robot_id];
+        if (!t) continue;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${t.id}</td>
+          <td>${t.type}</td>
+          <td>${priorityTag(t.priority)}</td>
+          <td>${r ? r.name : 'UNASSIGNED'}</td>
+          <td>(${t.x}, ${t.y})</td>
+        `;
+        assignmentsTbody.appendChild(tr);
+      }
+
+      // Metrics
+      const m = data.metrics || {};
+      setMetric('cap', m.capability_match_rate);
+      setMetric('prio', m.priority_order_score);
+      setMetric('balance', m.task_distribution_balance);
+      setMetric('comp', m.completion_rate);
+      document.getElementById('m-unassigned').textContent = m.unassigned_count ?? 0;
+    }
+
+    function priorityTag(level) {
+      const cls = level === 'high' ? 'tag-high' : level === 'medium' ? 'tag-medium' : 'tag-low';
+      return `<span class="tag ${cls}">${level}</span>`;
+    }
+
+    function setMetric(key, value) {
+      const pct = Math.round((value || 0) * 1000) / 10;
+      document.getElementById(`m-${key}`).textContent = pct.toFixed(1) + '%';
+      requestAnimationFrame(() => {
+        document.getElementById(`bar-${key}`).style.width = Math.min(100, pct) + '%';
+      });
+    }
+
+    loadData();
+  </script>
+</body>
+</html>

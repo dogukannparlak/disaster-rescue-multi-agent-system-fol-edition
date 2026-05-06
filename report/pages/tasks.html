@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks — CSE419 Term Project #2</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <h1><span class="icon">🚨</span> Rescue Sim</h1>
+        <p>Multi-Agent System Dashboard</p>
+      </div>
+
+      <nav class="nav-section">
+        <div class="nav-section-title">Main</div>
+        <a href="../index.html" class="nav-link">
+          <span class="icon">📊</span> Dashboard
+        </a>
+        <a href="tasks.html" class="nav-link active">
+          <span class="icon">📋</span> Tasks
+        </a>
+        <a href="robots.html" class="nav-link">
+          <span class="icon">🤖</span> Robots
+        </a>
+        <a href="metrics.html" class="nav-link">
+          <span class="icon">📈</span> Metrics
+        </a>
+      </nav>
+
+      <nav class="nav-section">
+        <div class="nav-section-title">Documentation</div>
+        <a href="architecture.html" class="nav-link">
+          <span class="icon">🏗️</span> Architecture
+        </a>
+        <a href="guide.html" class="nav-link">
+          <span class="icon">📖</span> User Guide
+        </a>
+      </nav>
+
+      <div style="padding: 16px 24px; border-top: 1px solid var(--border); margin-top: auto;">
+        <p style="font-size: 11px; color: var(--muted); line-height: 1.6;">
+          <strong style="color: var(--text);">CSE419 Term Project #2</strong><br>
+          FOL-Based Multi-Agent System<br>
+          Doğukan Parlak · 221805040
+        </p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="breadcrumb">
+            <a href="../index.html">🏠</a>
+            <span>/</span>
+            <span>Tasks</span>
+          </div>
+          <h1>Task Management</h1>
+          <p>All rescue tasks generated in the disaster environment — FOL constraint: <code>∀t (Task(t) → ∃!r Assigned(t,r))</code></p>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+          <span class="pill">
+            <span id="task-count">0</span> Total Tasks
+          </span>
+          <span class="pill" id="priority-summary">—</span>
+        </div>
+
+        <!-- Task Catalogue Info -->
+        <div class="grid mb-4">
+          <div class="info-card">
+            <h3>📚 Task Catalogue</h3>
+            <p>Tasks are randomly sampled from the following catalogue:</p>
+            <ul>
+              <li><strong>Rescue Victim</strong> (High) — requires medical support or search and mapping</li>
+              <li><strong>Clear Debris</strong> (Medium) — requires heavy debris removal</li>
+              <li><strong>Deliver Medicine</strong> (Medium) — requires medical support</li>
+              <li><strong>Map Building</strong> (Low) — requires search and mapping</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>🎯 Priority System</h3>
+            <p>Tasks are prioritized by urgency level:</p>
+            <ul>
+              <li><span class="tag tag-high">HIGH</span> — Immediate threat to life, handled first</li>
+              <li><span class="tag tag-medium">MEDIUM</span> — Significant risk, address after high priority</li>
+              <li><span class="tag tag-low">LOW</span> — Important but non-critical</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tasks Table -->
+        <div class="card">
+          <div class="card-header">
+            <h2>All Tasks</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-wrapper">
+              <table id="tasks-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Priority</th>
+                    <th>Required Capability</th>
+                    <th>Location (x, y)</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error Card -->
+        <div class="card" id="error-card" style="display: none;">
+          <div class="error-message">
+            <div class="icon">⚠️</div>
+            <h2>Could not load simulation data</h2>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script>
+    async function init() {
+      Dashboard.initPage();
+      try {
+        const data = await Dashboard.loadData();
+        Dashboard.renderTasksTable(data);
+        Dashboard.renderStatusBar(data);
+      } catch (e) {}
+    }
+    init();
+  </script>
+</body>
+</html>

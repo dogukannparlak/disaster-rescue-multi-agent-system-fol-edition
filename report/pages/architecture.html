@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Architecture — CSE419 Term Project #2</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <h1><span class="icon">🚨</span> Rescue Sim</h1>
+        <p>Multi-Agent System Dashboard</p>
+      </div>
+
+      <nav class="nav-section">
+        <div class="nav-section-title">Main</div>
+        <a href="../index.html" class="nav-link">
+          <span class="icon">📊</span> Dashboard
+        </a>
+        <a href="tasks.html" class="nav-link">
+          <span class="icon">📋</span> Tasks
+        </a>
+        <a href="robots.html" class="nav-link">
+          <span class="icon">🤖</span> Robots
+        </a>
+        <a href="metrics.html" class="nav-link">
+          <span class="icon">📈</span> Metrics
+        </a>
+      </nav>
+
+      <nav class="nav-section">
+        <div class="nav-section-title">Documentation</div>
+        <a href="architecture.html" class="nav-link active">
+          <span class="icon">🏗️</span> Architecture
+        </a>
+        <a href="guide.html" class="nav-link">
+          <span class="icon">📖</span> User Guide
+        </a>
+      </nav>
+
+      <div style="padding: 16px 24px; border-top: 1px solid var(--border); margin-top: auto;">
+        <p style="font-size: 11px; color: var(--muted); line-height: 1.6;">
+          <strong style="color: var(--text);">CSE419 Term Project #2</strong><br>
+          FOL-Based Multi-Agent System<br>
+          Doğukan Parlak · 221805040
+        </p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="breadcrumb">
+            <a href="../index.html">🏠</a>
+            <span>/</span>
+            <span>Architecture</span>
+          </div>
+          <h1>System Architecture</h1>
+          <p>CSE419 Term Project #2 — FOL-Based Disaster Rescue Multi-Agent System</p>
+        </div>
+
+        <!-- Pipeline Overview -->
+        <div class="section-header">
+          <h2>Agent Pipeline</h2>
+          <p>The simulation follows a sequential pipeline where each agent processes and passes data to the next</p>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="flow-diagram">
+              <div class="flow-step">
+                <div class="icon">🌍</div>
+                <h4>Environment</h4>
+                <p>Tasks + Robots</p>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">
+                <div class="icon">📋</div>
+                <h4>Planner Agent</h4>
+                <p>Rescue Plan</p>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">
+                <div class="icon">🔗</div>
+                <h4>Assignment Agent</h4>
+                <p>Task → Robot Map</p>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">
+                <div class="icon">🔍</div>
+                <h4>Critic Agent</h4>
+                <p>Validate & Fix</p>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">
+                <div class="icon">🤖</div>
+                <h4>Robot Agents</h4>
+                <p>Execute Tasks</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agent Descriptions -->
+        <div class="section-header">
+          <h2>Agent Descriptions</h2>
+        </div>
+
+        <div class="grid mb-4">
+          <div class="card">
+            <div class="card-header">
+              <h2>📋 Planner Agent</h2>
+            </div>
+            <div class="card-body">
+              <p class="text-muted">
+                Analyzes the disaster environment and produces a prioritized rescue plan.
+                Orders tasks by urgency (high → medium → low) and provides justification
+                for each decision.
+              </p>
+              <div class="mt-4">
+                <strong>Input:</strong> Task list, Robot fleet, Grid dimensions<br>
+                <strong>Output:</strong> Plain-text rescue plan narrative
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2>🔗 Assignment Agent</h2>
+            </div>
+            <div class="card-body">
+              <p class="text-muted">
+                Reads the rescue plan and assigns each task to exactly one robot
+                based on capability matching. Ensures high-priority tasks are
+                queued first for each robot.
+              </p>
+              <div class="mt-4">
+                <strong>Input:</strong> Rescue plan, Task list, Robot fleet<br>
+                <strong>Output:</strong> JSON assignment map {task_id → robot_id}
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2>🔍 Critic Agent</h2>
+            </div>
+            <div class="card-body">
+              <p class="text-muted">
+                Validates the assignment map for errors: capability mismatches,
+                priority violations, and unassigned tasks. Automatically corrects
+                any issues found.
+              </p>
+              <div class="mt-4">
+                <strong>Input:</strong> Assignment map, Task list, Robot fleet<br>
+                <strong>Output:</strong> Critique text + corrected assignments
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2>🤖 Robot Agents</h2>
+            </div>
+            <div class="card-body">
+              <p class="text-muted">
+                Execute assigned tasks in priority order. Each robot processes
+                its task queue sequentially, with execution time based on
+                robot speed (fast: 1s, medium: 2s, slow: 3s).
+              </p>
+              <div class="mt-4">
+                <strong>Input:</strong> Assigned task queue<br>
+                <strong>Output:</strong> Completed tasks + execution log
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Implementation Mode -->
+        <div class="section-header">
+          <h2>Implementation Mode</h2>
+        </div>
+
+        <div class="grid mb-4">
+          <div class="card">
+            <div class="card-header">
+              <h2>HW2 — FOL Mode</h2>
+              <span class="pill">Symbolic Reasoning</span>
+            </div>
+            <div class="card-body">
+              <p class="text-muted mb-4">
+                Agents apply First-Order Logic axioms directly. No external server — fully
+                deterministic and completes in under 1 second. Introduced in Term Project #2.
+              </p>
+              <ul class="text-muted">
+                <li><code>&#x2200;t (Task(t)&#x2192;&#x2203;!r Assigned(t,r))</code> — unique assignment</li>
+                <li><code>&#x2200;t,r (Assigned(t,r)&#x2192;Compatible(&#x2026;))</code> — capability match</li>
+                <li><code>Priority(t1)&gt;Priority(t2) &#x2192; ScheduledBefore(t1,t2)</code> — priority ordering</li>
+                <li><code>Cost(r,t) = Distance(r,t) / Speed(r)</code> — cost optimisation</li>
+              </ul>
+              <div class="mt-4">
+                <code>python main.py --no-delay</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2>Dashboard Data</h2>
+              <span class="tag tag-success">results/latest.json</span>
+            </div>
+            <div class="card-body">
+              <p class="text-muted mb-4">
+                The dashboard loads the most recent run from <code>results/latest.json</code>.
+                Each simulation run is also saved under <code>results/</code> with a traceable filename:
+                <code>t{tasks}_g{grid}_s{seed}_{timestamp}_{hash}.json</code>
+              </p>
+              <div class="mt-4">
+                <code>report/index.html?json=results/your_run_file.json</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- File Structure -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Project Structure</h2>
+          </div>
+          <div class="card-body">
+            <pre style="background: var(--panel-light); padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.8;">
+cse419_hw02_221805040/
+├── agents/
+│   ├── base.py                 # Abstract base classes
+│   └── fol/                    # FOL / Symbolic implementations
+│       ├── planner.py          # FOLPlannerAgent
+│       ├── assignment.py       # FOLAssignmentAgent
+│       └── critic.py           # FOLCriticAgent
+├── report/
+│   ├── index.html              # Dashboard home
+│   ├── pages/                  # Sub-pages
+│   ├── css/styles.css          # Stylesheets
+│   └── js/app.js               # JavaScript
+├── config.py                   # Configuration + SPEED_VALUES
+├── environment.py              # Disaster environment + FOL serialisation
+├── task_generator.py           # Task generation
+├── robot_model.py              # Robot definitions
+├── robot_agents.py             # Task execution
+├── metrics.py                  # Evaluation + compute_cost_efficiency()
+├── simulation.py               # FOL pipeline orchestration
+├── results/                    # Output runs
+│   ├── latest.json             # Dashboard data (latest run)
+│   └── t*_g*_s*_*.json         # Individual runs (traceable filenames)
+└── main.py                     # CLI entry point
+            </pre>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script>Dashboard.initPage();</script>
+</body>
+</html>

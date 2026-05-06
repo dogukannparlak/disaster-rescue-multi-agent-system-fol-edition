@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Guide — CSE419 Term Project #2</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <h1><span class="icon">🚨</span> Rescue Sim</h1>
+        <p>Multi-Agent System Dashboard</p>
+      </div>
+
+      <nav class="nav-section">
+        <div class="nav-section-title">Main</div>
+        <a href="../index.html" class="nav-link">
+          <span class="icon">📊</span> Dashboard
+        </a>
+        <a href="tasks.html" class="nav-link">
+          <span class="icon">📋</span> Tasks
+        </a>
+        <a href="robots.html" class="nav-link">
+          <span class="icon">🤖</span> Robots
+        </a>
+        <a href="metrics.html" class="nav-link">
+          <span class="icon">📈</span> Metrics
+        </a>
+      </nav>
+
+      <nav class="nav-section">
+        <div class="nav-section-title">Documentation</div>
+        <a href="architecture.html" class="nav-link">
+          <span class="icon">🏗️</span> Architecture
+        </a>
+        <a href="guide.html" class="nav-link active">
+          <span class="icon">📖</span> User Guide
+        </a>
+      </nav>
+
+      <div style="padding: 16px 24px; border-top: 1px solid var(--border); margin-top: auto;">
+        <p style="font-size: 11px; color: var(--muted); line-height: 1.6;">
+          <strong style="color: var(--text);">CSE419 Term Project #2</strong><br>
+          FOL-Based Multi-Agent System<br>
+          Doğukan Parlak · 221805040
+        </p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="breadcrumb">
+            <a href="../index.html">🏠</a>
+            <span>/</span>
+            <span>User Guide</span>
+          </div>
+          <h1>User Guide</h1>
+          <p>Complete guide for running and understanding the simulation</p>
+        </div>
+
+        <!-- Quick Start -->
+        <div class="section-header">
+          <h2>🚀 Quick Start</h2>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="grid">
+              <div class="info-card">
+                <h3>Step 1: Install Dependencies</h3>
+                <p>Open terminal in the project directory and run:</p>
+                <code style="display: block; margin-top: 12px; padding: 12px; background: var(--panel); border-radius: 8px;">
+                  pip install -r requirements.txt
+                </code>
+              </div>
+              <div class="info-card">
+                <h3>Step 2: Run Simulation</h3>
+                <p>Execute the simulation:</p>
+                <code style="display: block; margin-top: 12px; padding: 12px; background: var(--panel); border-radius: 8px;">
+                  python main.py
+                </code>
+              </div>
+              <div class="info-card">
+                <h3>Step 3: View Dashboard</h3>
+                <p>Open in your browser:</p>
+                <code style="display: block; margin-top: 12px; padding: 12px; background: var(--panel); border-radius: 8px;">
+                  report/index.html
+                </code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How Dashboard Works -->
+        <div class="section-header">
+          <h2>🔄 How the Dashboard Works</h2>
+        </div>
+
+        <div class="alert alert-info mb-4">
+          <span class="icon">💡</span>
+          <div class="alert-content">
+            <strong>Dynamic Data Loading</strong>
+            The dashboard is a static HTML page that loads data from <code>results/latest.json</code>.
+            Every time you run the simulation, the latest JSON file is updated. Refresh the browser to see new results.
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="flow-diagram">
+              <div class="flow-step">
+                <div class="icon">🐍</div>
+                <h4>python main.py</h4>
+                <p>Run simulation</p>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">
+                <div class="icon">📄</div>
+                <h4>results/latest.json</h4>
+                <p>Data exported</p>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">
+                <div class="icon">🌐</div>
+                <h4>Browser</h4>
+                <p>Open index.html</p>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">
+                <div class="icon">📊</div>
+                <h4>Dashboard</h4>
+                <p>View results</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CLI Options -->
+        <div class="section-header">
+          <h2>⌨️ Command Line Options</h2>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Flag</th>
+                    <th>Values</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>--tasks</code></td>
+                    <td>Integer (N)</td>
+                    <td>10</td>
+                    <td>Number of tasks to generate</td>
+                  </tr>
+                  <tr>
+                    <td><code>--grid</code></td>
+                    <td>Integer (N)</td>
+                    <td>20</td>
+                    <td>Grid size (NxN)</td>
+                  </tr>
+                  <tr>
+                    <td><code>--out</code></td>
+                    <td>Path</td>
+                    <td>(auto)</td>
+                    <td>Output JSON path (saved under <code>results/</code>)</td>
+                  </tr>
+                  <tr>
+                    <td><code>--seed</code></td>
+                    <td>Integer (N)</td>
+                    <td>42</td>
+                    <td>Random seed for reproducibility</td>
+                  </tr>
+                  <tr>
+                    <td><code>--no-delay</code></td>
+                    <td>Flag</td>
+                    <td>Off</td>
+                    <td>Skip execution delays (faster demo)</td>
+                  </tr>
+                  <tr>
+                    <td><code>--interactive</code></td>
+                    <td>Flag</td>
+                    <td>Off</td>
+                    <td>Open interactive menu to edit settings and run multiple simulations</td>
+                  </tr>
+                  <tr>
+                    <td><code>--out</code></td>
+                    <td>Path string</td>
+                    <td>(auto)</td>
+                    <td>Custom output JSON path — auto-generates <code>t{n}_g{g}_s{s}_*.json</code> if omitted</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="mt-4 mb-4">Basic Examples</h3>
+            <div class="grid">
+              <div class="info-card">
+                <h3>Quick Demo</h3>
+                <code>python main.py --no-delay</code>
+              </div>
+              <div class="info-card">
+                <h3>More Tasks</h3>
+                <code>python main.py --tasks 20 --seed 123</code>
+              </div>
+              <div class="info-card">
+                <h3>Custom Grid</h3>
+                <code>python main.py --grid 30</code>
+              </div>
+              <div class="info-card">
+                <h3>Interactive Mode</h3>
+                <code>python main.py --interactive</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="section-header">
+          <h2>🔧 Troubleshooting</h2>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="info-card mb-4">
+              <h3>❌ "Could not load simulation data"</h3>
+              <p>
+                The dashboard cannot find <code>results/latest.json</code>.<br>
+                <strong>Solution:</strong> Run <code>python main.py</code> first, then refresh the page.
+              </p>
+            </div>
+
+            <div class="info-card mb-4">
+              <h3>❌ "ModuleNotFoundError"</h3>
+              <p>
+                Python dependencies are not installed.<br>
+                <strong>Solution:</strong> Run <code>pip install -r requirements.txt</code>
+              </p>
+            </div>
+
+            <div class="info-card mb-4">
+              <h3>❌ "ModuleNotFoundError: No module named 'tabulate'"</h3>
+              <p>
+                A required dependency is missing.<br>
+                <strong>Solution:</strong> Run <code>pip install tabulate colorama</code>
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3>❌ Dashboard not updating</h3>
+              <p>
+                Browser may be caching old data.<br>
+                <strong>Solution:</strong> Hard refresh (Ctrl+Shift+R) or clear browser cache.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script>Dashboard.initPage();</script>
+</body>
+</html>
