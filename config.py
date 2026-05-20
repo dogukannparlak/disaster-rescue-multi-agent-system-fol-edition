@@ -1,3 +1,4 @@
+# ── Disaster Rescue MAS — Symbolic FOL Edition ─────────────────────────────────
 # ── Simulation settings ───────────────────────────────────────────────────────
 GRID_SIZE: int = 20          # NxN disaster grid
 

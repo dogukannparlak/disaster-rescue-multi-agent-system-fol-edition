@@ -17,7 +17,7 @@ class FOLPlannerAgent(BasePlannerAgent):
       ∀t1,t2 Priority(t1) > Priority(t2) → ScheduledBefore(t1, t2)
       ∀t Task(t) → RequiresCapability(t, Capability(t))
 
-    No LLM calls — fully deterministic.
+    Deterministic symbolic reasoning — no external model required.
     """
 
     def run(self, env: DisasterEnvironment) -> str:

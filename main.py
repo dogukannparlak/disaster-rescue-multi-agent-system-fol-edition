@@ -1,15 +1,16 @@
 """
 main.py
 -------
-Entry point for the disaster rescue multi-agent simulation.
+CLI entry point for the Disaster Rescue Multi-Agent System (Symbolic FOL Edition).
 
 Usage
 -----
-    python main.py                    # run with settings from config.py
+    python main.py                    # run with defaults from config.py
     python main.py --tasks 15         # generate 15 tasks
     python main.py --no-delay         # skip simulated execution delays
-    python main.py --seed 0           # use a different random seed
-    python main.py --interactive      # interactive mode with menu
+    python main.py --seed 0           # use a specific random seed
+    python main.py --grid 30          # use a 30x30 grid
+    python main.py --interactive      # interactive mode with live parameter menu
 """
 
 from __future__ import annotations
@@ -32,7 +33,7 @@ colorama_init(autoreset=True)
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Disaster Rescue Multi-Agent System (FOL / Symbolic Reasoning)"
+        description="Disaster Rescue Multi-Agent System — Symbolic FOL Edition"
     )
     parser.add_argument(
         "--tasks", type=int, default=None,
@@ -86,7 +87,7 @@ def interactive_mode() -> None:
     def print_header():
         print(Fore.CYAN + "\n" + "=" * 60)
         print(Fore.CYAN + "  DISASTER RESCUE SIMULATION — INTERACTIVE MODE")
-        print(Fore.CYAN + "  Backend: FOL (Symbolic)")
+        print(Fore.CYAN + "  Symbolic FOL Edition")
         print(Fore.CYAN + "=" * 60)
 
     def print_menu():
@@ -255,7 +256,7 @@ def main() -> None:
     simulate_delay = not args.no_delay
     export_path    = args.out if args.out is not None else None
 
-    print(f"\nStarting simulation — backend=FOL/SYMBOLIC")
+    print(f"\nStarting simulation — Symbolic FOL Edition")
 
     try:
         result = run_simulation(

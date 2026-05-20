@@ -63,7 +63,7 @@ def run_simulation(
     # ── Step 1: Build environment ─────────────────────────────────────────────
     print(Fore.WHITE + "\n" + "=" * 60)
     print(Fore.WHITE + "  DISASTER RESCUE MULTI-AGENT SYSTEM")
-    print(Fore.WHITE + "  Mode: FOL  |  Backend: SYMBOLIC")
+    print(Fore.WHITE + "  Symbolic FOL Edition  |  Deterministic Reasoning")
     print(Fore.WHITE + "=" * 60)
 
     tasks  = generate_tasks(num_tasks, seed=seed, grid_size=grid_size)
@@ -144,7 +144,7 @@ def _export_simulation_result(
             "capability_match":  "∀t,r(Assigned(t,r)→Compatible(Type(t),Capability(r)))",
             "priority_order":    "∀t1,t2(Priority(t1)>Priority(t2)→ScheduledBefore(t1,t2))",
             "cost_formula":      "Cost(r,t) = Distance(r,t) / Speed(r)",
-            "efficiency_formula": "Efficiency = Actual Cost / Optimal Cost (PDF)",
+            "efficiency_formula": "Efficiency = Actual Cost / Optimal Cost",
         },
         "config":  result.get("config", {}),
         "tasks": [

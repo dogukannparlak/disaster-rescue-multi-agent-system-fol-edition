@@ -1,7 +1,21 @@
-# Disaster Rescue Multi-Agent System — HW2
+# Disaster Rescue Multi-Agent System
 
-> A multi-agent system for disaster rescue coordination powered by **FOL-based (First-Order Logic / Symbolic Reasoning) agents**.
-> No external model or server required — fully deterministic, runs instantly.
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+![Backend](https://img.shields.io/badge/Backend-Symbolic%20FOL-orange)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+[![Contributing](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
+
+> A multi-agent system for disaster rescue coordination powered by **First-Order Logic (FOL) symbolic agents**.
+> Fully deterministic, zero external dependencies, runs in under one second.
+
+---
+
+## Overview
+
+This project implements a multi-agent rescue coordination pipeline where three specialised robots are autonomously assigned to disaster tasks using symbolic reasoning. Every agent decision is governed by explicit **FOL axioms** — uniqueness, capability matching, priority ordering, and cost minimisation — making the system fully auditable and reproducible.
+
+The system was designed as a study in reliability over flexibility. An earlier LLM-based version of the same pipeline demonstrated natural-language adaptability but suffered from non-determinism. This symbolic edition eliminates stochastic failures entirely while running orders of magnitude faster.
 
 ---
 
@@ -19,11 +33,11 @@ pip install -r requirements.txt
 python main.py
 ```
 
-No `.env` configuration needed. The FOL agents operate without any LLM backend.
+No environment configuration needed. The symbolic agents operate without any external AI backend.
 
 ---
 
-## All CLI Flags
+## CLI Flags
 
 ```
 --tasks        N            Generate N tasks (default: 10)
@@ -34,10 +48,12 @@ No `.env` configuration needed. The FOL agents operate without any LLM backend.
 --interactive, -i           Run in interactive mode with parameter menu
 ```
 
-Example:
+**Examples:**
 
 ```bash
-python main.py --tasks 12 --seed 7 --no-delay
+python main.py --tasks 15 --seed 7 --no-delay
+python main.py --grid 30 --seed 99
+python main.py --interactive
 ```
 
 ---
@@ -46,11 +62,7 @@ python main.py --tasks 12 --seed 7 --no-delay
 
 ```bash
 python main.py --interactive
-# or
-python main.py -i
 ```
-
-### Features
 
 - **Live parameter adjustment** — change tasks, seed, grid size, delay, and output path without restarting
 - **Random seed generator** — quickly test different scenarios with `[R]`
@@ -62,8 +74,6 @@ python main.py -i
 ## Configuration
 
 All constants live in `config.py`. No `.env` file or environment variables are required.
-
-Key settings:
 
 | Constant | Default | Description |
 |---|---|---|
@@ -78,21 +88,18 @@ Key settings:
 ## Project Structure
 
 ```
-cse419_hw02_221805040/
+disaster-rescue-multi-agent-system/
 │
 ├── agents/
 │   ├── base.py                    # BasePlannerAgent, BaseAssignmentAgent, BaseCriticAgent
 │   │
-│   ├── fol/                       # FOL / Symbolic implementations (HW2 — active)
-│   │   ├── __init__.py
-│   │   ├── planner.py             # FOLPlannerAgent
-│   │   ├── assignment.py          # FOLAssignmentAgent
-│   │   └── critic.py              # FOLCriticAgent
+│   └── fol/                       # Symbolic (FOL) implementations
+│       ├── planner.py             # FOLPlannerAgent
+│       ├── assignment.py          # FOLAssignmentAgent
+│       └── critic.py              # FOLCriticAgent
 │
 ├── report/
 │   ├── index.html                 # Dashboard home page
-│   ├── report.html                # Redirects to index.html (backwards compat)
-│   ├── report.md                  # Written project report
 │   ├── css/
 │   │   └── styles.css             # Dashboard styles
 │   ├── js/
@@ -110,13 +117,13 @@ cse419_hw02_221805040/
 ├── robot_model.py                 # Robot dataclass + build_robot_fleet()
 ├── robot_agents.py                # RobotAgent execution engine
 ├── metrics.py                     # Evaluation metrics (incl. cost efficiency)
-├── simulation.py                  # Full FOL pipeline orchestration
+├── simulation.py                  # Full pipeline orchestration
 ├── results/                       # Output runs (auto-created)
 │   ├── latest.json                # Dashboard data (latest run)
 │   └── t*_g*_s*_*.json           # Individual traceable runs
 ├── main.py                        # CLI entry point
 ├── requirements.txt
-├── .env.example
+├── report.md                      # Technical documentation
 └── README.md
 ```
 
@@ -132,18 +139,16 @@ cse419_hw02_221805040/
 │  - BaseAssignmentAgent        │
 │  - BaseCriticAgent            │
 └───────────────┬───────────────┘
-                │
                 │ implements
                 ▼
         agents/fol/
 ┌───────────────────────────────┐
-│     FOL / Symbolic Agents     │
+│     Symbolic (FOL) Agents     │
 │                               │
 │  - FOLPlannerAgent            │
 │  - FOLAssignmentAgent         │
 │  - FOLCriticAgent             │
 └───────────────┬───────────────┘
-                │
                 │ used by
                 ▼
 ┌───────────────────────────────┐
@@ -174,7 +179,7 @@ cse419_hw02_221805040/
 
 ---
 
-## Visual Report (HTML Dashboard)
+## HTML Dashboard
 
 **1. Run the simulation** (JSON is generated automatically):
 
@@ -214,3 +219,19 @@ To view a specific past run:
 ```
 report/index.html?json=results/t10_g20_s42_20260505-1629_8ab42d.json
 ```
+
+---
+
+## Technical Report
+
+See [`report.md`](report.md) for full technical documentation including agent design, evaluation metrics, results tables, and a comparison between symbolic and LLM-based approaches.
+
+---
+
+## Contributing
+
+Contributions are welcome — bug fixes, new agent backends, tests, and documentation improvements. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for branch naming, commit conventions, and PR guidelines.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

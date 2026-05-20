@@ -35,7 +35,7 @@ class FOLAssignmentAgent(BaseAssignmentAgent):
       When multiple robots share a capability, pick the one with
       minimum Cost(r,t) = Distance(r,t) / Speed(r).
 
-    No LLM calls — fully deterministic.
+    Deterministic symbolic reasoning — no external model required.
     """
 
     def run(self, env: DisasterEnvironment, plan_str: str) -> Dict[str, str]:

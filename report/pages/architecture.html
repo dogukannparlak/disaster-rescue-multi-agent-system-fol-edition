@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Architecture — CSE419 Term Project #2</title>
+  <title>Architecture — Disaster Rescue Multi-Agent System</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -41,11 +41,21 @@
         </a>
       </nav>
 
+      <nav class="nav-section">
+        <div class="nav-section-title">Links</div>
+        <a href="../../report.md" class="nav-link" target="_blank">
+          <span class="icon">📄</span> Technical Report
+        </a>
+        <a href="../../README.md" class="nav-link" target="_blank">
+          <span class="icon">📘</span> README
+        </a>
+      </nav>
+
       <div style="padding: 16px 24px; border-top: 1px solid var(--border); margin-top: auto;">
         <p style="font-size: 11px; color: var(--muted); line-height: 1.6;">
-          <strong style="color: var(--text);">CSE419 Term Project #2</strong><br>
-          FOL-Based Multi-Agent System<br>
-          Doğukan Parlak · 221805040
+          <strong style="color: var(--text);">Disaster Rescue MAS</strong><br>
+          Symbolic FOL Edition<br>
+          <span style="color: var(--accent);">by Doğukan Parlak</span>
         </p>
       </div>
     </aside>
@@ -61,7 +71,7 @@
             <span>Architecture</span>
           </div>
           <h1>System Architecture</h1>
-          <p>CSE419 Term Project #2 — FOL-Based Disaster Rescue Multi-Agent System</p>
+          <p>Agent pipeline design and component overview for the Symbolic FOL Edition</p>
         </div>
 
         <!-- Pipeline Overview -->
@@ -189,13 +199,13 @@
         <div class="grid mb-4">
           <div class="card">
             <div class="card-header">
-              <h2>HW2 — FOL Mode</h2>
+              <h2>Symbolic (FOL) Mode</h2>
               <span class="pill">Symbolic Reasoning</span>
             </div>
             <div class="card-body">
               <p class="text-muted mb-4">
                 Agents apply First-Order Logic axioms directly. No external server — fully
-                deterministic and completes in under 1 second. Introduced in Term Project #2.
+                deterministic and completes in under 1 second.
               </p>
               <ul class="text-muted">
                 <li><code>&#x2200;t (Task(t)&#x2192;&#x2203;!r Assigned(t,r))</code> — unique assignment</li>
@@ -234,7 +244,7 @@
           </div>
           <div class="card-body">
             <pre style="background: var(--panel-light); padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.8;">
-cse419_hw02_221805040/
+disaster-rescue-multi-agent-system/
 ├── agents/
 │   ├── base.py                 # Abstract base classes
 │   └── fol/                    # FOL / Symbolic implementations

@@ -16,8 +16,8 @@ def compute_cost_efficiency(
     speed_values: Dict[str, float],
 ) -> Dict[str, Any]:
     """
-    PDF (Term Project #2): Cost(r,t) = Distance(r,t) / Speed(r)
-    Efficiency = Actual Cost / Optimal Cost (CSE419 PDF; 1.0 = optimal).
+    Cost(r,t) = Distance(r,t) / Speed(r)
+    Efficiency = Actual Cost / Optimal Cost (1.0 = optimal).
 
     Optimal Cost — each task assigned to the lowest-cost compatible robot.
     Actual Cost  — based on the current assigned_robot_id on each task.
@@ -49,7 +49,7 @@ def compute_cost_efficiency(
             actual_cost += cost(assigned, task)
         # Unassigned tasks contribute 0 actual cost but inflate the gap
 
-    # PDF (CSE419 TP#2): Efficiency = Actual Cost / Optimal Cost
+    # Efficiency = Actual Cost / Optimal Cost
     # 1.0 = optimal; >1.0 means actual cost exceeds per-task greedy lower bound.
     if optimal_cost > 0:
         efficiency: float | None = actual_cost / optimal_cost

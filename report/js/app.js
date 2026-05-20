@@ -267,7 +267,7 @@ function renderMetrics(data) {
 }
 
 /**
- * Format PDF cost ratio: Efficiency = Actual Cost / Optimal Cost (1.0 = optimal).
+ * Format cost ratio: Efficiency = Actual Cost / Optimal Cost (1.0 = optimal).
  * @param {number|null|undefined} eff
  * @returns {string}
  */
@@ -287,7 +287,7 @@ function costEfficiencyBarPercent(eff) {
 }
 
 /**
- * Render cost metrics (HW2; CSE419 PDF Actual/Optimal ratio).
+ * Render cost metrics (Actual/Optimal ratio).
  * @param {Object} data - Simulation data
  */
 function renderCostMetrics(data) {

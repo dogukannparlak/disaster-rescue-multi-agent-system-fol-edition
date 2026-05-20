@@ -21,7 +21,7 @@ class FOLCriticAgent(BaseCriticAgent):
               before running; the assignment dict does not encode execution order.
 
     Detected violations are described in English, then automatically corrected.
-    No LLM calls — fully deterministic.
+    Deterministic symbolic reasoning — no external model required.
     """
 
     def run(

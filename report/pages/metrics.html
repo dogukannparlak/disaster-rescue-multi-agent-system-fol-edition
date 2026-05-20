@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Metrics — CSE419 Term Project #2</title>
+  <title>Metrics — Disaster Rescue Multi-Agent System</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -41,11 +41,21 @@
         </a>
       </nav>
 
+      <nav class="nav-section">
+        <div class="nav-section-title">Links</div>
+        <a href="../../report.md" class="nav-link" target="_blank">
+          <span class="icon">📄</span> Technical Report
+        </a>
+        <a href="../../README.md" class="nav-link" target="_blank">
+          <span class="icon">📘</span> README
+        </a>
+      </nav>
+
       <div style="padding: 16px 24px; border-top: 1px solid var(--border); margin-top: auto;">
         <p style="font-size: 11px; color: var(--muted); line-height: 1.6;">
-          <strong style="color: var(--text);">CSE419 Term Project #2</strong><br>
-          FOL-Based Multi-Agent System<br>
-          Doğukan Parlak · 221805040
+          <strong style="color: var(--text);">Disaster Rescue MAS</strong><br>
+          Symbolic FOL Edition<br>
+          <span style="color: var(--accent);">by Doğukan Parlak</span>
         </p>
       </div>
     </aside>
@@ -145,10 +155,10 @@
           </div>
         </div>
 
-        <!-- Cost ratio (HW2; CSE419 PDF) -->
+        <!-- Cost ratio (Actual / Optimal) -->
         <div class="section-header mt-4">
-          <h2>Cost Ratio (Actual / Optimal) — HW2</h2>
-          <p>PDF: Cost(r,t) = Distance(r,t) / Speed(r); Efficiency = Actual Cost / Optimal Cost</p>
+          <h2>Cost Ratio (Actual / Optimal)</h2>
+          <p>Cost(r,t) = Distance(r,t) / Speed(r); Efficiency = Actual Cost / Optimal Cost</p>
         </div>
 
         <div class="grid mb-4">
@@ -186,7 +196,7 @@
                 <div class="metric-bar"><div class="metric-bar-fill" id="bar-cost-eff"></div></div>
               </div>
               <p class="text-muted text-sm mt-4">
-                <code>Actual Cost / Optimal Cost</code> (CSE419 Term Project #2). Value <strong>1.0</strong> means actual
+                <code>Actual Cost / Optimal Cost</code>. Value <strong>1.0</strong> means actual
                 equals the per-task greedy lower bound; values <strong>&gt; 1.0</strong> indicate higher-than-baseline cost.
               </p>
             </div>
@@ -217,8 +227,8 @@
                 <p><code>completed_tasks / total_tasks</code></p>
               </div>
               <div class="info-card">
-                <h3>📊 Cost ratio (HW2)</h3>
-                <p><code>Actual Cost / Optimal Cost</code> (PDF)<br>where Cost(r,t) = Distance(r,t) / Speed(r)</p>
+                <h3>📊 Cost ratio</h3>
+                <p><code>Actual Cost / Optimal Cost</code><br>where Cost(r,t) = Distance(r,t) / Speed(r)</p>
               </div>
             </div>
           </div>
